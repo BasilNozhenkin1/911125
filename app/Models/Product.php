@@ -19,6 +19,6 @@ class Product extends Model
 
     public function groups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Group::class, 'product_categories', 'product_id', 'group_id');
+        return $this->belongsToMany(Group::class, 'product_groups', 'product_id', 'group_id');
     }
 }

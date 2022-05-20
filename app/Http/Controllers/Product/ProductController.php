@@ -4,22 +4,29 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductCategoryRequest;
+use App\Http\Requests\ProductGroupRequest;
+use App\Http\Resources\ProductCategoryResource;
+use App\Http\Resources\ProductGroupResource;
 use App\Repositories\Product\ProductQueries;
-use Illuminate\Http\Request;
 
 final class ProductController extends Controller
 {
     public function getCategories(ProductCategoryRequest $request, ProductQueries $productQueries): \Illuminate\Http\JsonResponse
     {
+
+        $productCategories = $productQueries->getCategories($request->validated());
+
         return response()->json(
-            $productQueries->getCategories($request->validated())
+            ProductCategoryResource::collection($productCategories)
         );
     }
 
-    public function getGroups(Request $request, ProductQueries $productQueries): \Illuminate\Http\JsonResponse
+    public function getGroups(ProductGroupRequest $request, ProductQueries $productQueries): \Illuminate\Http\JsonResponse
     {
+        $productGroups = $productQueries->getGroups($request->validated());
+
         return response()->json(
-            $productQueries->getGroups($request->all())
+            ProductGroupResource::collection($productGroups)
         );
     }
 

@@ -4,6 +4,11 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property mixed $id
+ * @property mixed $name
+ * @property mixed $groups
+ */
 class ProductGroupResource extends JsonResource
 {
     /**
@@ -14,6 +19,10 @@ class ProductGroupResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'groups' => GroupResource::collection($this->groups)
+        ];
     }
 }

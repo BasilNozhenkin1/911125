@@ -16,18 +16,23 @@
 
 
 #### На примере продукта (сущность - product) :
-| Метод  |     Путь      | Action              |
-| :---   |:-------------:|          ---:       |
-| GET    | /api/products | Получение списка    |
-| POST   | /api/products | Работа с сущностью  |
+| Метод  |           Путь           |                                      Action |
+| :---  |:------------------------:|--------------------------------------------:|
+| GET   | /api/products/categories | Фильтрация данных по продукту с категориями |
+| GET   |   /api/products/groups   |    Фильтрация данных по продукту с группами |
 
 
 ### Шаги для запуска проекта
 
 - composer install
-- php artisan migrate
+При желании провести truncate базы данных database.sqlite
+- php artisan migrate:refresh
 - php artisan db:seed
 - php artisan serve
+- Сайт запустится в локальной сети по адресу http://127.0.0.1:8000 
+
+### Postman-ссылка
+https://www.postman.com/collections/5e7459b9de3ecc520b47
 
 
 
